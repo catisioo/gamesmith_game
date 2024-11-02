@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg8gwbxuq2dxx"]
+
+[ext_resource type="Texture2D" uid="uid://evl2pgfviax1" path="res://textures/cover_w_text.png" id="1_c0mln"]
+[ext_resource type="Script" path="res://scripts/newGameBtn.gd" id="1_ddqac"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="2_a7qh0"]
+[ext_resource type="Script" path="res://scenes/quitBtn.gd" id="2_n4n4t"]
+
+[node name="titleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_c0mln")
+
+[node name="quitBtn" type="Button" parent="TextureRect"]
+layout_mode = 2
+offset_left = 1135.0
+offset_top = 708.0
+offset_right = 1431.0
+offset_bottom = 779.0
+theme = ExtResource("2_a7qh0")
+text = "quit"
+script = ExtResource("2_n4n4t")
+
+[node name="newGameBtn" type="Button" parent="TextureRect"]
+layout_mode = 2
+offset_left = 1135.0
+offset_top = 576.0
+offset_right = 1433.0
+offset_bottom = 651.0
+theme = ExtResource("2_a7qh0")
+text = "new game"
+script = ExtResource("1_ddqac")
+
+[connection signal="pressed" from="TextureRect/quitBtn" to="TextureRect/newGameBtn" method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="TextureRect/newGameBtn" to="TextureRect/newGameBtn" method="_on_pressed"]
