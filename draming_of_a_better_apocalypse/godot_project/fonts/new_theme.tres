@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://da85jwfdn14or"]
 
-[ext_resource type="FontFile" uid="uid://dbytdjffyevqi" path="res://fonts/courier-pixel-monospaced.ttf" id="1_gwy7e"]
+[ext_resource type="FontFile" uid="uid://b7seddfwa1mlo" path="res://fonts/CutiveMono-Regular.ttf" id="1_tvvvn"]
 
 [resource]
-default_font = ExtResource("1_gwy7e")
-default_font_size = 30
+default_font = ExtResource("1_tvvvn")
+default_font_size = 37

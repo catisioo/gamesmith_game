@@ -1,0 +1,22 @@
+C:/Users/User/Downloads/ffmpeg-6.0-essentials_build/ffmpeg-6.0-essentials_build/bin/ffmpeg.exe -hide_banner -y -reinit_filter 0 -framerate 90 -i C:/Users/User/KritaRecorder\20241102093938\%07d.jpg -framerate 30 -start_number 3858-1 -i C:/Users/User/KritaRecorder\20241102093938\%07d.jpg -filter_complex 
+ [1]scale='min(800, iw*(450/ih))':'min(450, ih*(800/iw))'[hold1];
+ [hold1]pad=800:450:(ow-iw)/2:(oh-ih)/2[hold2];
+ [hold2]setsar=1:1[hold3];
+ [hold3]split=3[preview1][transition1][end1];
+ [preview1]tpad=stop_mode=clone:stop_duration=2[preview2];
+ [preview2]setpts=PTS-STARTPTS[preview3];
+ [transition1]tpad=stop_mode=clone:stop_duration=0.7[transition2];
+ [transition2]setpts=PTS-STARTPTS[transition3];
+ [transition3]framerate=30[transition4];
+ [0]fps=30[main1];
+ [main1]scale='min(800, iw*(450/ih))':'min(450, ih*(800/iw))':eval=frame[main2];
+ [main2]pad=800:450:(ow-iw)/2:(oh-ih)/2:eval=frame[main3];
+ [main3]setsar=1:1[main4];
+ [transition4][main4]xfade=transition=smoothright:duration=0.7:offset=0[main5];
+ [end1]tpad=stop_mode=clone:stop_duration=3[end2];
+ [end2]setpts=PTS-STARTPTS[end3];
+ [preview3][main5][end3]concat=n=3:v=1:a=0[final1];
+ [final1]setpts=PTS-STARTPTS
+ -stats -loglevel error -c:v libx264 -r 30 -pix_fmt yuv420p E:/draming_of_a_better_apocalypse\gacha.mp4
+=====================================================
+frame=    0 fps=0.0 q=0.0 size=       0kB time=-577014:32:22.77 bitrate=  -0.0kbits/s speed=N/A    frame=  176 fps=0.0 q=29.0 size=       0kB time=00:00:05.76 bitrate=   0.1kbits/s speed=10.8x    frame=  398 fps=385 q=29.0 size=     256kB time=00:00:13.16 bitrate= 159.3kbits/s speed=12.7x    frame=  600 fps=391 q=29.0 size=     256kB time=00:00:19.90 bitrate= 105.4kbits/s speed=  13x    frame=  740 fps=364 q=29.0 size=     512kB time=00:00:24.56 bitrate= 170.7kbits/s speed=12.1x    frame=  944 fps=372 q=29.0 size=     512kB time=00:00:31.36 bitrate= 133.7kbits/s speed=12.4x    frame= 1149 fps=379 q=29.0 size=     768kB time=00:00:38.23 bitrate= 164.6kbits/s speed=12.6x    frame= 1438 fps=416 q=-1.0 Lsize=    1002kB time=00:00:47.83 bitrate= 171.5kbits/s speed=13.8x    
