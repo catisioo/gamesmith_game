@@ -1,0 +1,162 @@
+[gd_scene load_steps=11 format=3 uid="uid://r1eojrtebqt8"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_bj56l"]
+[ext_resource type="Texture2D" uid="uid://p1ttyyt02hun" path="res://textures/turbine.png" id="2_b5lwp"]
+[ext_resource type="PackedScene" uid="uid://dtp1ripklrxuw" path="res://scenes/player_main.tscn" id="2_d1jes"]
+[ext_resource type="Shader" path="res://scripts/main.gdshader" id="2_jcorf"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="2_uhwf0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohvy1"]
+shader = ExtResource("2_jcorf")
+shader_parameter/noise_opacity = 0.275
+shader_parameter/noise_speed = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubmbx"]
+size = Vector2(182, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lntdu"]
+size = Vector2(245, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_he73d"]
+size = Vector2(143, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyiq3"]
+size = Vector2(119, 95)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_bj56l")
+
+[node name="Player" parent="." instance=ExtResource("2_d1jes")]
+z_index = -1
+position = Vector2(1370, 399)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -19)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera2D/CanvasLayer"]
+material = SubResource("ShaderMaterial_ohvy1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/Camera2D"]
+z_index = 4
+offset_left = -741.0
+offset_top = 294.0
+offset_right = 744.0
+offset_bottom = 406.0
+theme = ExtResource("2_uhwf0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+
+[node name="turbine" type="StaticBody2D" parent="."]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="turbine"]
+z_index = -1
+position = Vector2(744, 326)
+texture = ExtResource("2_b5lwp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="turbine"]
+position = Vector2(702, 621)
+build_mode = 1
+polygon = PackedVector2Array(951, -506, 912, -53, -294, -7, -325, -518, -272, -521, -268, -61, 874, -107, 883, -498)
+
+[node name="interactables" type="Node2D" parent="."]
+position = Vector2(243, 298)
+
+[node name="computer" type="Area2D" parent="interactables"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactables/computer"]
+position = Vector2(597, 205.5)
+shape = SubResource("RectangleShape2D_ubmbx")
+
+[node name="computer_button" type="Button" parent="interactables/computer"]
+z_index = 2
+offset_left = 528.0
+offset_top = 111.0
+offset_right = 672.0
+offset_bottom = 151.0
+theme = ExtResource("2_uhwf0")
+text = "computer"
+
+[node name="down" type="Area2D" parent="interactables"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactables/down"]
+position = Vector2(941.5, 188)
+shape = SubResource("RectangleShape2D_lntdu")
+
+[node name="down_button" type="Button" parent="interactables/down"]
+offset_left = 851.0
+offset_top = 103.0
+offset_right = 1029.0
+offset_bottom = 143.0
+theme = ExtResource("2_uhwf0")
+text = "climb down"
+
+[node name="sleep" type="Area2D" parent="interactables"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactables/sleep"]
+position = Vector2(1258.5, 187.5)
+shape = SubResource("RectangleShape2D_he73d")
+
+[node name="sleep_button" type="Button" parent="interactables/sleep"]
+offset_left = 1204.0
+offset_top = 106.0
+offset_right = 1318.0
+offset_bottom = 146.0
+theme = ExtResource("2_uhwf0")
+text = "sleep"
+
+[node name="forever_sleep_button" type="Button" parent="interactables/sleep"]
+offset_left = 1168.0
+offset_top = 32.0
+offset_right = 1356.0
+offset_bottom = 94.0
+theme = ExtResource("2_uhwf0")
+theme_override_font_sizes/font_size = 24
+text = "continue the
+last dream?"
+
+[node name="cook" type="Area2D" parent="interactables"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactables/cook"]
+position = Vector2(755.5, 195.5)
+shape = SubResource("RectangleShape2D_xyiq3")
+
+[node name="cook_button" type="Button" parent="interactables/cook"]
+offset_left = 712.0
+offset_top = 104.0
+offset_right = 800.0
+offset_bottom = 144.0
+theme = ExtResource("2_uhwf0")
+text = "pan"
+
+[connection signal="body_entered" from="interactables/computer" to="." method="_on_computer_body_entered"]
+[connection signal="body_exited" from="interactables/computer" to="." method="_on_computer_body_exited"]
+[connection signal="pressed" from="interactables/computer/computer_button" to="." method="_on_computer_button_pressed"]
+[connection signal="body_entered" from="interactables/down" to="." method="_on_down_body_entered"]
+[connection signal="body_exited" from="interactables/down" to="." method="_on_down_body_exited"]
+[connection signal="pressed" from="interactables/down/down_button" to="." method="_on_down_button_pressed"]
+[connection signal="body_entered" from="interactables/sleep" to="." method="_on_sleep_body_entered"]
+[connection signal="body_exited" from="interactables/sleep" to="." method="_on_sleep_body_exited"]
+[connection signal="pressed" from="interactables/sleep/sleep_button" to="." method="_on_sleep_button_pressed"]
+[connection signal="pressed" from="interactables/sleep/forever_sleep_button" to="." method="_on_forever_sleep_button_pressed"]
+[connection signal="body_entered" from="interactables/cook" to="." method="_on_cook_body_entered"]
+[connection signal="body_exited" from="interactables/cook" to="." method="_on_cook_body_exited"]
+[connection signal="pressed" from="interactables/cook/cook_button" to="." method="_on_cook_button_pressed"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp0myxku61hg3"]
+
+[ext_resource type="PackedScene" uid="uid://dvwhdvy4vcs0p" path="res://scenes/return_to_main_btn.tscn" id="1_kjhn3"]
+
+[node name="dream_three" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 62.0
+offset_top = 31.0
+offset_right = 126.0
+offset_bottom = 80.0
+text = "dream 3
+
+"
+
+[node name="return_to_main_btn" parent="." instance=ExtResource("1_kjhn3")]
+offset_left = 194.0
+offset_top = 111.0
+offset_right = 194.0
+offset_bottom = 111.0

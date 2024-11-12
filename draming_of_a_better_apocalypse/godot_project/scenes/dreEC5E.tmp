@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://fsq1wjw1cvvq"]
+
+[ext_resource type="PackedScene" uid="uid://dvwhdvy4vcs0p" path="res://scenes/return_to_main_btn.tscn" id="1_cjkrc"]
+[ext_resource type="Script" path="res://scripts/dream_one.gd" id="1_ecfre"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="3_p4nwg"]
+[ext_resource type="Texture2D" uid="uid://ddg7x7nh24g0b" path="res://textures/gacha_mc_active.png" id="4_f5qvk"]
+[ext_resource type="Texture2D" uid="uid://bkv0nyecjwokp" path="res://textures/gacha_nun_active.png" id="4_o6bfg"]
+[ext_resource type="Texture2D" path="res://textures/gacha_nun_notactive.png" id="5_2waf5"]
+[ext_resource type="Texture2D" path="res://textures/gacha_mc_notactive.png" id="5_kw8xj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w20xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_f5qvk")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kw8xj")
+}],
+"loop": true,
+"name": &"passive",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rr8m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_why50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_o6bfg")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2waf5")
+}],
+"loop": true,
+"name": &"passive",
+"speed": 5.0
+}]
+
+[node name="dream_one" type="Node2D"]
+script = ExtResource("1_ecfre")
+
+[node name="return_to_main_btn" parent="." instance=ExtResource("1_cjkrc")]
+offset_left = -17.0
+offset_top = 191.0
+offset_right = -17.0
+offset_bottom = 191.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 4
+offset_left = -741.0
+offset_top = 294.0
+offset_right = 744.0
+offset_bottom = 406.0
+theme = ExtResource("3_p4nwg")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+bbcode_enabled = true
+
+[node name="main_char" type="AnimatedSprite2D" parent="."]
+position = Vector2(385, 0)
+sprite_frames = SubResource("SpriteFrames_w20xh")
+animation = &"passive"
+autoplay = "passive"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="main_char"]
+libraries = {
+"": SubResource("AnimationLibrary_0rr8m")
+}
+
+[node name="nun" type="AnimatedSprite2D" parent="."]
+position = Vector2(-485, 60)
+sprite_frames = SubResource("SpriteFrames_why50")
+animation = &"passive"
+autoplay = "passive"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="nun"]

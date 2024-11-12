@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cop7epsw0rtb4"]
+
+[ext_resource type="Script" path="res://scripts/cutscene_one.gd" id="1_rieto"]
+[ext_resource type="Texture2D" uid="uid://b0bee10shueum" path="res://textures/cutscene1.png" id="2_p3sqp"]
+[ext_resource type="Texture2D" uid="uid://ctryh10bako2p" path="res://textures/cutscene2.png" id="3_51spl"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="3_i7irf"]
+
+[node name="CutsceneOne" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rieto")
+
+[node name="first" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pic_one" type="TextureRect" parent="first"]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = ExtResource("2_p3sqp")
+
+[node name="second" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="second"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_51spl")
+
+[node name="third" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="third"]
+layout_mode = 0
+offset_right = 1602.0
+offset_bottom = 900.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 4
+layout_mode = 0
+offset_left = 65.0
+offset_top = 732.0
+offset_right = 1550.0
+offset_bottom = 844.0
+theme = ExtResource("3_i7irf")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+bbcode_enabled = true

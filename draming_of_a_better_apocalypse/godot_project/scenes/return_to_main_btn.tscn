@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvwhdvy4vcs0p"]
+
+[ext_resource type="Script" path="res://return_to_main_btn.gd" id="1_3ngr8"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="2_2ly4f"]
+
+[node name="return_to_main_btn" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ngr8")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -174.0
+offset_top = -20.0
+offset_right = 174.0
+offset_bottom = 20.0
+theme = ExtResource("2_2ly4f")
+text = "Solve the apocalypse"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

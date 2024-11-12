@@ -1,0 +1,195 @@
+[gd_scene load_steps=14 format=3 uid="uid://b6o25a8jhh78i"]
+
+[ext_resource type="Script" path="res://scripts/gacha.gd" id="1_6hao0"]
+[ext_resource type="Texture2D" uid="uid://bkqyhma6f06up" path="res://textures/gacha_banner_bg.png" id="1_uvo8e"]
+[ext_resource type="Theme" uid="uid://da85jwfdn14or" path="res://fonts/new_theme.tres" id="2_pfqdb"]
+[ext_resource type="Texture2D" uid="uid://bpyef2mvw21ey" path="res://textures/gacha_pull_bg.png" id="3_kj5b3"]
+[ext_resource type="Texture2D" uid="uid://bw524tx02xokl" path="res://textures/koi1.png" id="5_k2i50"]
+[ext_resource type="Texture2D" uid="uid://cgh2d35xgg3ty" path="res://textures/shard_nobg_2.png" id="5_os2l3"]
+[ext_resource type="Texture2D" uid="uid://cgvyn1gfndrvp" path="res://textures/koi2.png" id="6_gvwgf"]
+[ext_resource type="Texture2D" uid="uid://bdre6btvmb078" path="res://textures/shard_nobg_1.png" id="6_uwhx6"]
+[ext_resource type="Texture2D" uid="uid://l6oc1caywm02" path="res://textures/shard1.png" id="7_85636"]
+[ext_resource type="Texture2D" uid="uid://du3xi3ev6sdjq" path="res://textures/shard2.png" id="8_jr4yj"]
+[ext_resource type="Texture2D" uid="uid://cs24csy3ep2yp" path="res://textures/shard3.png" id="9_l8rsf"]
+[ext_resource type="Texture2D" uid="uid://sgw7aetqyu41" path="res://textures/shard4.png" id="10_tkco2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amvs5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k2i50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gvwgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k2i50")
+}],
+"loop": false,
+"name": &"koi",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_85636")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jr4yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_85636")
+}],
+"loop": false,
+"name": &"shard1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_l8rsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tkco2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l8rsf")
+}],
+"loop": false,
+"name": &"shard2",
+"speed": 5.0
+}]
+
+[node name="gacha" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6hao0")
+
+[node name="banner_bg" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 170.0
+offset_top = 17.0
+offset_right = 1425.0
+offset_bottom = 858.0
+texture = ExtResource("1_uvo8e")
+
+[node name="ColorRect" type="ColorRect" parent="banner_bg"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = -333.0
+offset_top = -149.0
+offset_right = -307.0
+offset_bottom = -128.0
+scale = Vector2(73.9793, 56.8175)
+color = Color(0, 0, 0, 0.803922)
+
+[node name="10pull" type="Button" parent="banner_bg"]
+z_index = 2
+layout_mode = 0
+offset_left = 788.0
+offset_top = 622.0
+offset_right = 1149.0
+offset_bottom = 719.0
+theme = ExtResource("2_pfqdb")
+theme_override_font_sizes/font_size = 49
+text = "Summon x10"
+
+[node name="TextureRect" type="TextureRect" parent="banner_bg"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="koi" type="TextureRect" parent="banner_bg"]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 80.0
+offset_right = 1314.0
+offset_bottom = 980.0
+scale = Vector2(0.796735, 0.796735)
+mouse_filter = 2
+texture = ExtResource("5_k2i50")
+
+[node name="shard1" type="TextureRect" parent="banner_bg"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 312.0
+offset_right = 1137.0
+offset_bottom = 1212.0
+scale = Vector2(0.469114, 0.469114)
+mouse_filter = 2
+texture = ExtResource("5_os2l3")
+
+[node name="shard2" type="TextureRect" parent="banner_bg"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 95.0
+offset_right = 971.0
+offset_bottom = 995.0
+scale = Vector2(0.5402, 0.5402)
+mouse_filter = 2
+texture = ExtResource("6_uwhx6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="banner_bg"]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 539.0
+offset_right = 1147.0
+offset_bottom = 619.0
+theme = ExtResource("2_pfqdb")
+theme_override_colors/font_shadow_color = Color(0.339719, 0.0797777, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 6
+bbcode_enabled = true
+text = "[center][b][color=#EBAC00]10% DROP RATE
+5 Star Fish Hero[/color][/b][/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="banner_bg"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 644.0
+offset_right = 517.0
+offset_bottom = 724.0
+theme = ExtResource("2_pfqdb")
+theme_override_colors/font_shadow_color = Color(0.339719, 0.0797777, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 6
+bbcode_enabled = true
+text = "[center][b][color=#EBAC00]90% DROP RATE
+Fish Hero Shard[/color][/b][/center]"
+
+[node name="pull_bg" type="TextureRect" parent="."]
+visible = false
+z_index = 3
+layout_mode = 0
+offset_top = 378.0
+offset_right = 1600.0
+offset_bottom = 906.0
+texture = ExtResource("3_kj5b3")
+
+[node name="koi" type="AnimatedSprite2D" parent="pull_bg"]
+visible = false
+position = Vector2(769, 58)
+scale = Vector2(0.816909, 0.816909)
+sprite_frames = SubResource("SpriteFrames_amvs5")
+animation = &"shard2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="pull_bg/koi"]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1428.0
+offset_top = 47.0
+offset_right = 1554.0
+offset_bottom = 162.0
+theme = ExtResource("2_pfqdb")
+theme_override_font_sizes/font_size = 96
+text = "X"
+
+[connection signal="pressed" from="banner_bg/10pull" to="." method="_on_pull_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

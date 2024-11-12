@@ -62,8 +62,9 @@ animations = [{
 radius = 37.0
 height = 226.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-2, -121)
+collision_layer = 2
 script = ExtResource("1_a148w")
 metadata/_edit_group_ = true
 
